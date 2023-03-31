@@ -8,15 +8,20 @@ import Selects from "../Selects/Selects";
 
 function Main() {
     const [search, setSearch] = useState("")
+    const [count, setCount] = useState(30)
     type DispatchFunc = () => AppDispatch
     const useAppDispatch: DispatchFunc = useDispatch
     const dispatch = useAppDispatch()
 
     const searchBook = (e: KeyboardEvent <HTMLInputElement>) => {
             if(e.key === "Enter") {
-                dispatch(getBooks(search))
+                dispatch(getBooks(search, 0))
             }
         }
+    const loadMoreBooks = () => {
+        setCount(count + 30)
+        }
+
 
     return (
         <div className="App">
@@ -29,7 +34,7 @@ function Main() {
                 onKeyPress={searchBook}
             />
             <button
-                onClick={(e) => dispatch(getBooks(search))}
+                onClick={(e) => dispatch(getBooks(search, 0))}
                 className="Button-Style">Search</button>
             </div>
             <Selects/>
@@ -54,7 +59,7 @@ function Main() {
             {/*</form>*/}
             <ListOfBooks/>
             <div className="ButtonContainer">
-            <button className="BottomButton">Load More</button>
+            <button className="BottomButton" onClick={(e) => { loadMoreBooks(); dispatch(getBooks(search, count))}}>Load More</button>
             </div>
         </div>
     );

@@ -41,9 +41,28 @@ export function setBooks(books: any) {
 //     })
 // }
 
-export const getBooks = (query: string) => {
+// export const getBooks = (query: string) => {
+//     return (dispatch: Dispatch) => {
+//         axios(`https://www.googleapis.com/books/v1/volumes?q=${query}&key=AIzaSyChmj7WVf-0XyWKFmlHy8Ki7gFuT-IYL7Y&startIndex=0&maxResults=30`)
+//             .then(res => {
+//                 if (res.status === 400) {
+//                     throw new Error('Bad response')
+//                 }
+//                 return res
+//             })
+//             .then(res => {
+//                 dispatch(setBooks(res.data.items))
+//             })
+//             .catch((err) => {
+//                 console.log(err)
+//             })
+//     }
+// }
+
+export const getBooks = (query: string, number: number) => {
     return (dispatch: Dispatch) => {
-        axios(`https://www.googleapis.com/books/v1/volumes?q=${query}&key=AIzaSyChmj7WVf-0XyWKFmlHy8Ki7gFuT-IYL7Y&startIndex=0&maxResults=30`)
+        const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&key=AIzaSyChmj7WVf-0XyWKFmlHy8Ki7gFuT-IYL7Y&startIndex=${number}&maxResults=30`
+        axios(url)
             .then(res => {
                 if (res.status === 400) {
                     throw new Error('Bad response')

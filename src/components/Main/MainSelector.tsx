@@ -10,7 +10,7 @@ import {Data} from "../../types"
 const ListOfBooks: React.FC = () => {
     const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
     const [show, setShow] = useState(false)
-    console.log(`Show ${show}`)
+    //console.log(`Show ${show}`)
     const [bookItem,setItem]=useState<any>()
 
     // useEffect(() => {

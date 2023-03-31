@@ -5,10 +5,8 @@ import noImage from "./book.jpg";
 
 const Increase: React.FC<Props> = ({show, data, onClose}) => {
     const [clicked, setClicked] = useState(false)
-    console.log(`Clicked ${clicked}`)
+    //console.log(`Clicked ${clicked}`)
    // console.log(onClose())
-
-
 
     useEffect(()=> {
         if(clicked)

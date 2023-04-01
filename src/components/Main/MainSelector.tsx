@@ -13,6 +13,7 @@ const ListOfBooks: React.FC = () => {
     const [bookItem, setItem] = useState<any>()
 
     const searchedListOfBooks = useAppSelector(store => store.reducer.books)
+    console.log(searchedListOfBooks)
     const booksList = () => searchedListOfBooks ? searchedListOfBooks.map((it: Data, index: number) =>
             <div onClick={() => {
                 setShow(true)

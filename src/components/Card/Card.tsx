@@ -21,7 +21,7 @@ const Card: React.FC<CardItems> = ({data}) => {
             <div className="Bottom">
                 <div className="Categories">{categories()}</div>
                 <div><b>{data.volumeInfo.title}</b></div>
-                <div>{data.volumeInfo.authors}</div>
+                <div>{data.volumeInfo.authors && data.volumeInfo.authors[0]}</div>
             </div>
         </div>
     )

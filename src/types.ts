@@ -1,7 +1,7 @@
 export interface Data {
     volumeInfo: {
         title: string,
-        authors: [],
+        authors: [any],
         imageLinks: {
             thumbnail: string
         },

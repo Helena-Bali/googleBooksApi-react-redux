@@ -9,7 +9,6 @@ import Selects from "../Selects/Selects";
 function Main() {
     const [search, setSearch] = useState("")
     const [count, setCount] = useState(30)
-    console.log(count)
     type DispatchFunc = () => AppDispatch
     const useAppDispatch: DispatchFunc = useDispatch
     const dispatch = useAppDispatch()

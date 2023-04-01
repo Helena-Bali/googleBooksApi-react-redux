@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {TypedUseSelectorHook, useSelector} from 'react-redux'
 import type {RootState} from '../../redux/reducers/store'
 import Card from "../Card/Card";
@@ -10,12 +10,7 @@ import {Data} from "../../types"
 const ListOfBooks: React.FC = () => {
     const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
     const [show, setShow] = useState(false)
-    //console.log(`Show ${show}`)
-    const [bookItem,setItem]=useState<any>()
-
-    // useEffect(() => {
-    //     setShow(false)
-    // }, [show])
+    const [bookItem, setItem] = useState<any>()
 
     const searchedListOfBooks = useAppSelector(store => store.reducer.books)
     const booksList = () => searchedListOfBooks ? searchedListOfBooks.map((it: Data) =>
@@ -24,10 +19,12 @@ const ListOfBooks: React.FC = () => {
                 setItem(it)
             }}><Card data={it}/>
                 <div className="Upper">
-                <IncreaseCard
-                    show={show} data={bookItem}
-                              //@ts-ignore
-                              onClose={() => {setShow(false)}}/></div></div>
+                    <IncreaseCard
+                        show={show} data={bookItem}
+                        onClose={() => {
+                            setShow(false)
+                        }}/></div>
+            </div>
         )
         : "No book with this title found. Please try another name."
 

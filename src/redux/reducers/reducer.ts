@@ -9,8 +9,7 @@ const initialState = {
     books: []
 }
 
-
-const reducer = (state = initialState, action: { type: string, payload?: any, query?: string }) => {
+const reducer = (state = initialState, action: { type: string, payload?: any, query?: string , books: []}) => {
     switch (action.type) {
         case SET_B00KS:
             return {
@@ -18,11 +17,16 @@ const reducer = (state = initialState, action: { type: string, payload?: any, qu
                 books: action.payload
             }
         case SORT_CATEGORY: {
-            const books = state.books
-            const filteredBooks = books.filter((it: Data) =>
-                it.volumeInfo.categories? it.volumeInfo.categories[0] === action.payload: [])
+            const books = action.books
+            const copiedBooks = books.slice()
+            const filteredBooks = copiedBooks.filter((it: Data) => {
+                    return action.payload !== "All"? it.volumeInfo.categories &&
+                        it.volumeInfo.categories[0] === action.payload
+                        : action.books
+                }
+            )
             return {
-             ...state,
+                ...state,
                 books: filteredBooks
             }
         }
@@ -39,17 +43,17 @@ export function setBooks(books: any) {
 
 }
 
-export function sortByCategory(value: string) {
+export function sortByCategory(value: string, books: any) {
     return ({
         type: SORT_CATEGORY,
-        payload: value
+        payload: value,
+        books: books
     })
 }
 
 export const getBooks = (query: string, number: number, sort: string) => {
     return (dispatch: Dispatch) => {
         const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&key=AIzaSyChmj7WVf-0XyWKFmlHy8Ki7gFuT-IYL7Y&orderBy=${sort}&startIndex=${number}&maxResults=30`
-        console.log(url)
         axios(url)
             .then(res => {
                 if (res.status === 400) {
@@ -59,6 +63,25 @@ export const getBooks = (query: string, number: number, sort: string) => {
             })
             .then(res => {
                 dispatch(setBooks(res.data.items))
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+}
+
+export const getFilteredBooks = (query: string, number: number, sort: string, value: string) => {
+    return (dispatch: Dispatch) => {
+        const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&key=AIzaSyChmj7WVf-0XyWKFmlHy8Ki7gFuT-IYL7Y&orderBy=${sort}&startIndex=${number}&maxResults=30`
+        axios(url)
+            .then(res => {
+                if (res.status === 400) {
+                    throw new Error('Bad response')
+                }
+                return res
+            })
+            .then(res => {
+                dispatch(sortByCategory(value, res.data.items))
             })
             .catch((err) => {
                 console.log(err)

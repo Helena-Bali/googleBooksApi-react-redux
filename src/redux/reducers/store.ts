@@ -6,6 +6,7 @@ import {CurriedGetDefaultMiddleware} from "@reduxjs/toolkit/dist/getDefaultMiddl
 
 const store: any = configureStore({
     reducer: {
+        //@ts-ignore
         reducer: reducer,
     },
     middleware: (getDefaultMiddleware: CurriedGetDefaultMiddleware) =>

@@ -19,7 +19,7 @@ const Selects: React.FC<any> = ({count, search}) => {
                         value={value}
                         onChange={(e) => {
                             setValue(e.target.value);
-                            dispatch(getFilteredBooks(search, count, sortValue, e.target.value))
+                            dispatch(getFilteredBooks(search, count-30, sortValue, e.target.value))
                         }}>
                     <option value="All">All</option>
                     <option value="Art">Art</option>

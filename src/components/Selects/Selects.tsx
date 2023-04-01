@@ -1,28 +1,46 @@
-import Select from 'react-select'
-import React from "react";
+import React, {useState, useRef} from "react";
 import "./Select.css"
-
-
-const options: any = [
-    {value: 'all', label: 'All'},
-    {value: 'art', label: 'Art'},
-    {value: 'biography', label: 'Biography'},
-    {value: 'computers', label: 'Computers'},
-    {value: 'history', label: 'History'},
-    {value: 'medical', label: 'Medical'},
-    {value: 'poetry', label: 'Poetry'}
-]
-
-const sortOptions = [
-    {value: 'relevance', label: 'relevance'},
-    {value: 'newest', label: 'newest'}
-]
+import {AppDispatch} from "../../redux/reducers/store";
+import {useDispatch} from "react-redux";
+import {sortByCategory} from "../../redux/reducers/reducer";
 
 const Selects = () => {
+    const [value, setValue] = useState<any>()
+    type DispatchFunc = () => AppDispatch
+    const useAppDispatch: DispatchFunc = useDispatch
+    const dispatch = useAppDispatch()
+
     return (
         <div className="Select-container">
-            Categories: < Select className="Categories"  options={options} defaultValue={options[0]} />
-            Sorting by: < Select className="Categories" options={sortOptions} defaultValue={sortOptions[0]}/>
+            <label className="Label-category">
+                <span> Categories: </span>
+                <select className="Select"
+                        value={value}
+                        onChange={(e) => {
+                            setValue(e.target.value);
+                            dispatch(sortByCategory(e.target.value))
+                        }}>
+                    <option value="All">All</option>
+                    <option value="Art">Art</option>
+                    <option value="Biography">Biography</option>
+                    <option value="Computers">Computers</option>
+                    <option value="History">History</option>
+                    <option value="Medical">Medical</option>
+                    <option value="Poetry">Poetry</option>
+                </select>
+            </label>
+            <label className="Label-sort">
+                <span>Sorting by: </span>
+                <select
+                    className="Select"
+                    value={value}
+                    onChange={(e) => {
+                    setValue(e.target.value)
+                }}>
+                    <option value="relevance">relevance</option>
+                    <option value="newest">newest</option>
+                </select>
+            </label>
         </div>
     )
 }

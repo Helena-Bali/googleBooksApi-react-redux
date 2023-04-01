@@ -22,7 +22,6 @@ function Main() {
         setCount(count + 30)
         }
 
-
     return (
         <div className="App">
             <div className="Input-container">
@@ -30,7 +29,7 @@ function Main() {
                 className="Input-style"
                 placeholder="Enter the book name"
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) => {setSearch(e.target.value)}}
                 onKeyPress={searchBook}
             />
             <button
@@ -38,28 +37,11 @@ function Main() {
                 className="Button-Style">Search</button>
             </div>
             <Selects/>
-            {/*<form*/}
-            {/*   // onSubmit={handleSubmit}*/}
-            {/*>*/}
-            {/*    <label>*/}
-            {/*        Categories:*/}
-            {/*        <select*/}
-            {/*            // value={state.value} onChange={handleChange}*/}
-            {/*        >*/}
-            {/*            <option value="all">All</option>*/}
-            {/*            <option value="art">Art</option>*/}
-            {/*            <option value="biography">Biography</option>*/}
-            {/*            <option value="computers">Computers</option>*/}
-            {/*            <option value="history">History</option>*/}
-            {/*            <option value="medical">Medical</option>*/}
-            {/*            <option value="poetry">Poetry</option>*/}
-            {/*        </select>*/}
-            {/*    </label>*/}
-            {/*    <input type="submit" value="Отправить" />*/}
-            {/*</form>*/}
             <ListOfBooks/>
             <div className="ButtonContainer">
-            <button className="BottomButton" onClick={(e) => { loadMoreBooks(); dispatch(getBooks(search, count))}}>Load More</button>
+            <button className="BottomButton"
+                    onClick={(e) => { loadMoreBooks();
+                        dispatch(getBooks(search, count))}}>Load More</button>
             </div>
         </div>
     );

@@ -18,7 +18,6 @@ const ListOfBooks: React.FC = () => {
     // }, [show])
 
     const searchedListOfBooks = useAppSelector(store => store.reducer.books)
-
     const booksList = () => searchedListOfBooks ? searchedListOfBooks.map((it: Data) =>
             <div onClick={() => {
                 setShow(true)

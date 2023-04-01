@@ -46,9 +46,10 @@ export function sortByCategory(value: string) {
     })
 }
 
-export const getBooks = (query: string, number: number) => {
+export const getBooks = (query: string, number: number, sort: string) => {
     return (dispatch: Dispatch) => {
-        const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&key=AIzaSyChmj7WVf-0XyWKFmlHy8Ki7gFuT-IYL7Y&startIndex=${number}&maxResults=30`
+        const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&key=AIzaSyChmj7WVf-0XyWKFmlHy8Ki7gFuT-IYL7Y&orderBy=${sort}&startIndex=${number}&maxResults=30`
+        console.log(url)
         axios(url)
             .then(res => {
                 if (res.status === 400) {

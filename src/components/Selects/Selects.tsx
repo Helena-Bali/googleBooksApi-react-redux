@@ -1,10 +1,10 @@
-import React, {useState, useRef} from "react";
+import React, {useState} from "react";
 import "./Select.css"
 import {AppDispatch} from "../../redux/reducers/store";
 import {useDispatch} from "react-redux";
-import {sortByCategory} from "../../redux/reducers/reducer";
+import {getBooks, sortByCategory} from "../../redux/reducers/reducer";
 
-const Selects = () => {
+const Selects: React.FC<any> = ({count, search}) => {
     const [value, setValue] = useState<any>()
     type DispatchFunc = () => AppDispatch
     const useAppDispatch: DispatchFunc = useDispatch
@@ -35,8 +35,9 @@ const Selects = () => {
                     className="Select"
                     value={value}
                     onChange={(e) => {
-                    setValue(e.target.value)
-                }}>
+                        setValue(e.target.value)
+                        dispatch(getBooks(search, count-30, (e.target.value)))
+                    }}>
                     <option value="relevance">relevance</option>
                     <option value="newest">newest</option>
                 </select>

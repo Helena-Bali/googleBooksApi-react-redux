@@ -9,13 +9,15 @@ import Selects from "../Selects/Selects";
 function Main() {
     const [search, setSearch] = useState("")
     const [count, setCount] = useState(30)
+    console.log(count)
     type DispatchFunc = () => AppDispatch
     const useAppDispatch: DispatchFunc = useDispatch
     const dispatch = useAppDispatch()
+    const sort = "relevance"
 
     const searchBook = (e: KeyboardEvent <HTMLInputElement>) => {
             if(e.key === "Enter") {
-                dispatch(getBooks(search, 0))
+                dispatch(getBooks(search, 0, sort))
             }
         }
     const loadMoreBooks = () => {
@@ -33,15 +35,15 @@ function Main() {
                 onKeyPress={searchBook}
             />
             <button
-                onClick={(e) => dispatch(getBooks(search, 0))}
+                onClick={(e) => dispatch(getBooks(search, 0, sort))}
                 className="Button-Style">Search</button>
             </div>
-            <Selects/>
+            <Selects count={count} search={search}/>
             <ListOfBooks/>
             <div className="ButtonContainer">
             <button className="BottomButton"
                     onClick={(e) => { loadMoreBooks();
-                        dispatch(getBooks(search, count))}}>Load More</button>
+                        dispatch(getBooks(search, count, sort))}}>Load More</button>
             </div>
         </div>
     );

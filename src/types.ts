@@ -21,3 +21,5 @@ export interface Props {
 export interface CardItems {
     data: Data
 }
+
+

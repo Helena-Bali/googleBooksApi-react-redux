@@ -9,7 +9,7 @@ const initialState = {
     books: []
 }
 
-const reducer = (state = initialState, action: { type: string, payload?: any, query?: string , books: []}) => {
+const reducer = (state = initialState, action: { type: string, payload?: string, query?: string , books: []}) => {
     switch (action.type) {
         case SET_B00KS:
             return {
@@ -43,13 +43,15 @@ export function setBooks(books: any) {
 
 }
 
-export function sortByCategory(value: string, books: any) {
+export function sortByCategory(books: any, value?: string) {
     return ({
         type: SORT_CATEGORY,
         payload: value,
         books: books
     })
 }
+
+
 
 export const getBooks = (query: string, number: number, sort: string) => {
     return (dispatch: Dispatch) => {
@@ -70,7 +72,8 @@ export const getBooks = (query: string, number: number, sort: string) => {
     }
 }
 
-export const getFilteredBooks = (query: string, number: number, sort: string, value: string) => {
+export const getFilteredBooks = (query: string, number: number, sort: string, value?: string) => {
+   console.log('getFilteredBooks invoked with', query,number, sort, value)
     return (dispatch: Dispatch) => {
         const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&key=AIzaSyChmj7WVf-0XyWKFmlHy8Ki7gFuT-IYL7Y&orderBy=${sort}&startIndex=${number}&maxResults=30`
         axios(url)
@@ -81,7 +84,7 @@ export const getFilteredBooks = (query: string, number: number, sort: string, va
                 return res
             })
             .then(res => {
-                dispatch(sortByCategory(value, res.data.items))
+                dispatch(sortByCategory(res.data.items, value))
             })
             .catch((err) => {
                 console.log(err)

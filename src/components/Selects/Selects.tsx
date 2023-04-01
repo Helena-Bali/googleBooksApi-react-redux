@@ -2,11 +2,11 @@ import React, {useState} from "react";
 import "./Select.css"
 import {AppDispatch} from "../../redux/reducers/store";
 import {useDispatch} from "react-redux";
-import {getBooks, getFilteredBooks} from "../../redux/reducers/reducer";
+import {getFilteredBooks} from "../../redux/reducers/reducer";
 
 const Selects: React.FC<any> = ({count, search}) => {
-    const [value, setValue] = useState<any>()
-    const [sortValue, setSortValue] = useState<any>("relevance")
+    const [value, setValue] = useState<string>("All")
+    const [sortValue, setSortValue] = useState<string>("relevance")
     type DispatchFunc = () => AppDispatch
     const useAppDispatch: DispatchFunc = useDispatch
     const dispatch = useAppDispatch()
@@ -37,7 +37,7 @@ const Selects: React.FC<any> = ({count, search}) => {
                     value={sortValue}
                     onChange={(e) => {
                         setSortValue(e.target.value)
-                        dispatch(getBooks(search, count-30, (e.target.value)))
+                        dispatch(getFilteredBooks(search, count-30, (e.target.value), value))
                     }}>
                     <option value="relevance">relevance</option>
                     <option value="newest">newest</option>

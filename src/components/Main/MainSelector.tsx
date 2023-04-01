@@ -9,17 +9,18 @@ import {Data} from "../../types"
 
 const ListOfBooks: React.FC = () => {
     const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState<boolean>(false)
     const [bookItem, setItem] = useState<any>()
 
     const searchedListOfBooks = useAppSelector(store => store.reducer.books)
-    const booksList = () => searchedListOfBooks ? searchedListOfBooks.map((it: Data) =>
+    const booksList = () => searchedListOfBooks ? searchedListOfBooks.map((it: Data, index: number) =>
             <div onClick={() => {
                 setShow(true)
                 setItem(it)
-            }}><Card data={it}/>
+            }}><Card data={it} key={index}/>
                 <div className="Upper">
                     <IncreaseCard
+                        key={index}
                         show={show} data={bookItem}
                         onClose={() => {
                             setShow(false)

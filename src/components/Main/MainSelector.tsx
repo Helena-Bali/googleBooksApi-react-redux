@@ -33,8 +33,8 @@ const ListOfBooks: React.FC = () => {
     return (
         <div>
             <div className="Results">
-                { searchedListOfBooks.books.length > 0 ?
-                    `Found ${searchedListOfBooks.totalItems} results`: null}
+                {searchedListOfBooks.books && searchedListOfBooks.books.length > 0 ?
+                    `Found ${searchedListOfBooks.totalItems} results` : null}
             </div>
             <div className="Card-container">{booksList()}</div>
         </div>

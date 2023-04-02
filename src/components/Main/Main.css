@@ -37,7 +37,7 @@
 .Card-container {
   width: 65%;
   margin: 0 auto;
-  margin-top: 25px;
+  margin-top: 2%;
   display: grid;
   grid-template-columns: repeat(4, minmax(200px, 0.5fr));
   grid-gap: 20px;
@@ -62,4 +62,26 @@
   background-color: peachpuff;
   border: none;
   margin-bottom: 1%;
+}
+
+
+@media (max-width: 990px) {
+  .Card-container {
+    margin-top: 1%;
+    grid-template-columns: repeat(3, minmax(200px, 0.5fr));
+  }
+}
+
+@media (max-width: 770px) {
+  .Card-container {
+    margin-top: 1%;
+    grid-template-columns: repeat(2, minmax(200px, 0.5fr));
+  }
+}
+
+@media (max-width: 440px) {
+  .Card-container {
+    margin-top: 1%;
+    grid-template-columns: repeat(1, minmax(200px, 0.5fr));
+  }
 }

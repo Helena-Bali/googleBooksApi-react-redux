@@ -58,7 +58,7 @@
   padding: 1%;
   border-radius: 20px;
   font-size: 80%;
-  margin-top: 1%;
+  margin-top: 3%;
   background-color: peachpuff;
   border: none;
   margin-bottom: 1%;
@@ -77,11 +77,19 @@
     margin-top: 1%;
     grid-template-columns: repeat(2, minmax(200px, 0.5fr));
   }
+  .BottomButton {
+    padding: 2%;
+    margin-top: 4%;
+  }
 }
 
 @media (max-width: 440px) {
   .Card-container {
     margin-top: 1%;
     grid-template-columns: repeat(1, minmax(200px, 0.5fr));
+  }
+  .BottomButton {
+    padding: 3%;
+    margin-top: 5%;
   }
 }

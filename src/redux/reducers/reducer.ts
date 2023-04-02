@@ -6,15 +6,17 @@ const SET_B00KS = 'SET_BOOKS'
 const SORT_CATEGORY = 'SORT_CATEGORY'
 
 const initialState = {
-    books: []
+    books: [],
+    totalItems: 0
 }
 
-const reducer = (state = initialState, action: { type: string, payload?: string, query?: string , books: []}) => {
+const reducer = (state = initialState, action: { type: string, payload?: string, query?: string , books: [], totalItems: number}) => {
     switch (action.type) {
         case SET_B00KS:
             return {
                 ...state,
-                books: action.payload
+                books: action.payload,
+                totalItems: action.totalItems
             }
         case SORT_CATEGORY: {
             const books = action.books
@@ -35,10 +37,11 @@ const reducer = (state = initialState, action: { type: string, payload?: string,
     }
 }
 
-export function setBooks(books: any) {
+export function setBooks(books: any, totalItems: number) {
     return ({
         type: SET_B00KS,
-        payload: books
+        payload: books,
+        totalItems
     })
 
 }
@@ -64,7 +67,7 @@ export const getBooks = (query: string, number: number, sort: string) => {
                 return res
             })
             .then(res => {
-                dispatch(setBooks(res.data.items))
+                dispatch(setBooks(res.data.items, res.data.totalItems))
             })
             .catch((err) => {
                 console.log(err)

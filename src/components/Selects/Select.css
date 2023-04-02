@@ -39,6 +39,7 @@ span {
 @media (max-width: 830px) {
     .Select {
         width: 40%;
+        padding: 2% 0 2% 0
     }
     span {
         margin-left: 5%;
@@ -48,6 +49,7 @@ span {
 @media (max-width: 510px) {
     .Select {
         width: 65%;
+        padding: 3% 0 3% 0
     }
     span {
         margin-left: 5%;
@@ -67,5 +69,6 @@ span {
 @media (max-width: 390px) {
     .Select {
         width: 70%;
+        padding: 5% 0 5% 0
     }
 }

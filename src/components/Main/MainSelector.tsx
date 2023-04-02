@@ -5,6 +5,7 @@ import Card from "../Card/Card";
 import '../Card/Card.css'
 import IncreaseCard from "../Card/IncreaseCard";
 import {Data} from "../../types"
+import './Main.css';
 
 
 const ListOfBooks: React.FC = () => {
@@ -12,9 +13,8 @@ const ListOfBooks: React.FC = () => {
     const [show, setShow] = useState<boolean>(false)
     const [bookItem, setItem] = useState<any>()
 
-    const searchedListOfBooks = useAppSelector(store => store.reducer.books)
-    console.log(searchedListOfBooks)
-    const booksList = () => searchedListOfBooks ? searchedListOfBooks.map((it: Data, index: number) =>
+    const searchedListOfBooks = useAppSelector(store => store.reducer)
+    const booksList = () => searchedListOfBooks.books ? searchedListOfBooks.books.map((it: Data, index: number) =>
             <div onClick={() => {
                 setShow(true)
                 setItem(it)
@@ -31,7 +31,13 @@ const ListOfBooks: React.FC = () => {
         : "No book with this title found. Please try another name."
 
     return (
-        <div className="Card-container">{booksList()}</div>
+        <div>
+            <div className="Results">
+                { searchedListOfBooks.books.length > 0 ?
+                    `Found ${searchedListOfBooks.totalItems} results`: null}
+            </div>
+            <div className="Card-container">{booksList()}</div>
+        </div>
     )
 }
 

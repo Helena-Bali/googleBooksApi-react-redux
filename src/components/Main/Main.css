@@ -33,11 +33,17 @@
   background-color: peachpuff;
   border: none;
 }
+.Results{
+  display: flex;
+  justify-content: center;
+  margin-top: 1%;
+  color: grey;
+}
 
 .Card-container {
   width: 70%;
   margin: 0 auto;
-  margin-top: 2%;
+  margin-top: 1%;
   display: grid;
   grid-template-columns: repeat(4, minmax(20%, 1fr));
   grid-gap: 20px;
@@ -64,10 +70,15 @@
   margin-bottom: 1%;
 }
 
+@media (max-width: 1250px) {
+  .Card-container {
+    width: 90%;
+  }
+}
 
 @media (max-width: 990px) {
   .Card-container {
-    margin-top: 1%;
+    width: 70%;
     grid-template-columns: repeat(3, minmax(25%, 0.5fr));
   }
 }
@@ -75,7 +86,6 @@
 @media (max-width: 830px) {
   .Card-container {
     width: 70%;
-    margin-top: 1%;
     grid-template-columns: repeat(2, minmax(50%, 1fr));
   }
   .Input-style {
@@ -93,7 +103,6 @@
 @media (max-width: 510px) {
   .Card-container {
     width: 65%;
-    margin-top: 1%;
     grid-template-columns: repeat(1, minmax(25%, 1fr));
   }
   .Input-style {

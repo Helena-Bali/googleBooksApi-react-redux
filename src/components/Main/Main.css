@@ -35,11 +35,11 @@
 }
 
 .Card-container {
-  width: 65%;
+  width: 80%;
   margin: 0 auto;
   margin-top: 2%;
   display: grid;
-  grid-template-columns: repeat(4, minmax(25%, 0.5fr));
+  grid-template-columns: repeat(4, minmax(20%, 1fr));
   grid-gap: 20px;
   box-sizing: border-box;
   margin-bottom: auto;
@@ -68,14 +68,15 @@
 @media (max-width: 990px) {
   .Card-container {
     margin-top: 1%;
-    grid-template-columns: repeat(3, minmax(30%, 0.5fr));
+    grid-template-columns: repeat(3, minmax(25%, 0.5fr));
   }
 }
 
 @media (max-width: 830px) {
   .Card-container {
+    width: 70%;
     margin-top: 1%;
-    grid-template-columns: repeat(2, minmax(150px, 0.5fr));
+    grid-template-columns: repeat(2, minmax(50%, 1fr));
   }
   .Input-style {
     padding: 2%;
@@ -91,6 +92,7 @@
 
 @media (max-width: 510px) {
   .Card-container {
+    width: 65%;
     margin-top: 1%;
     grid-template-columns: repeat(1, minmax(25%, 1fr));
   }
@@ -103,5 +105,11 @@
   .BottomButton {
     padding: 3%;
     margin-top: 5%;
+  }
+}
+
+@media (max-width: 360px) {
+  .Input-style {
+    width: 60%;
   }
 }

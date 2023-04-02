@@ -109,10 +109,49 @@
     .Card img {
         width: 60%;
     }
+    .Overlay-inner{
+        width: 80%;
+        height: 90%;
+    }
+}
+
+@media (max-width: 830px) {
+    .Card img {
+        width: 50%;
+    }
+    .Info {
+        font-size: small;
+    }
+    .Overlay-inner{
+        width: 100%;
+        height: 100%;
+    }
+    .Overlay-inner .Description{
+        margin-top: 5px;
+        font-size: 0.7rem;
+    }
 }
 
 @media (max-width: 510px) {
     .Card img {
         width: 50%;
+    }
+    .Info {
+        font-size: xx-small;
+    }
+    .Overlay-inner .Description{
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 390px) {
+    .Overlay-inner{
+        width: 100%;
+        height: 100%;
+    }
+    .Overlay-inner .Inner-box img{
+        margin-right: 20px;
+        width: 70%;
+        height: 100%;
     }
 }

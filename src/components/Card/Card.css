@@ -104,3 +104,10 @@
 .Upper {
     z-index: 999999;
 }
+
+@media (max-width: 510px) {
+    .Card img {
+        width: 60%;
+        height: 55%;
+    }
+}

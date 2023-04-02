@@ -31,7 +31,7 @@ const Increase: React.FC<Props> = ({show, data, onClose}) => {
                     <img src={image()} alt=""/>
                     <div className="Info">
                         <h2>{data.volumeInfo.title}</h2>
-                        <h3>{data.volumeInfo.authors}</h3>
+                        <h3>{data.volumeInfo.authors.map(it => `${it}, ` )}</h3>
                         <h4>{data.volumeInfo.publisher} <span>{data.volumeInfo.publishedDate}</span></h4><br/>
                     </div>
                 </div>

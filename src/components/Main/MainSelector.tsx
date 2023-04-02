@@ -6,6 +6,7 @@ import '../Card/Card.css'
 import IncreaseCard from "../Card/IncreaseCard";
 import {Data} from "../../types"
 import './Main.css';
+import {googleFontsCache} from "workbox-recipes";
 
 
 const ListOfBooks: React.FC = () => {
@@ -14,7 +15,8 @@ const ListOfBooks: React.FC = () => {
     const [bookItem, setItem] = useState<any>()
 
     const searchedListOfBooks = useAppSelector(store => store.reducer)
-    const booksList = () => searchedListOfBooks.books ? searchedListOfBooks.books.map((it: Data, index: number) =>
+    const booksList = () => searchedListOfBooks.books ?
+        searchedListOfBooks.books.map((it: Data, index: number) =>
             <div onClick={() => {
                 setShow(true)
                 setItem(it)
@@ -28,7 +30,7 @@ const ListOfBooks: React.FC = () => {
                         }}/></div>
             </div>
         )
-        : "No book with this title found. Please try another name."
+        : <h2><b> No book with this title found. Please try another name. </b></h2>
 
     return (
         <div>
